@@ -61,9 +61,9 @@ void OnBoardLED::setColor(LEDColors color) {
 		_ledColor = (color == 0) ? BLACK : WHITE;
 		break;
 	case RGB_LED_MODE:
-		digitalWrite(_redPin, (color & 0x01));
-		digitalWrite(_grnPin, ((color >> 1) & 0x01));
-		digitalWrite(_bluPin, ((color >> 2) & 0x01));
+		digitalWrite(_redPin, ((~color >> 2) & 0x01));
+		digitalWrite(_grnPin, ((~color >> 1) & 0x01));
+		digitalWrite(_bluPin, (~color & 0x01));
 		_ledColor = color;
 		break;
 	case NEO_PIXEL_MODE:
